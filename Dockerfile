@@ -1,6 +1,9 @@
 # Set the base image
 FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
+# Add NVIDIA package repository key
+RUN curl -sL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub | apt-key add -
+
 # Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -39,6 +42,8 @@ RUN pip3 install --upgrade pip setuptools wheel && \
         omegaconf==2.0.6 \
         kaldi_io
 
+# Clone the Jukebox repository
+RUN git clone https://github.com/openai/jukebox.git
 
 # Set the working directory
 WORKDIR /jukebox
