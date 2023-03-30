@@ -2,7 +2,9 @@
 FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
 # Add NVIDIA package repository key
-RUN apt-get update && apt-get install -y gnupg && \
+RUN echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y gnupg && \
     curl -sL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub -o /tmp/nvidia.pub && \
     apt-key add /tmp/nvidia.pub
 
