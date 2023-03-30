@@ -1,3 +1,7 @@
+RUN curl -sL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub -o /tmp/nvidia.pub
+RUN apt-key add /tmp/nvidia.pub
+
+
 # Set the base image
 FROM nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
